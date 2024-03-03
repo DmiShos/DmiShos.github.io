@@ -1,19 +1,20 @@
 button {
     display: block;
-    background-color: rgb(34, 9, 44);
-    color: rgb(190, 49, 68);
-    border-color: rgb(135, 35, 65);
-    width: 500px;
+    background-color: rgb(7, 25, 82);
+    color: rgb(53, 162, 159);
+    border-color: rgb(8, 131, 149);
+    width: 250px;
     border-radius: 20px;
     border-width: 5px;
-    font-size: 40px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 60px;
     padding: 15px;
 }
 
 button:hover {
-    background-color: rgb(135, 35, 65);
-    color: rgb(240, 89, 65);
-    border-color: rgb(190, 49, 68);
-    transition-duration: 0.4s;
+    background-color: rgb(8, 131, 149);
+    color: rgb(242, 247, 161);
+    border-color: rgb(53, 162, 159);
+    transition-duration: 0.3s;
 }
