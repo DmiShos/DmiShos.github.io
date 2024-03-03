@@ -1,6 +1,7 @@
 const tg = window.Telegram.WebApp;
 
 tg.BackButton.show();
+tg.SettingsButton.show();
 
 const testCompany1 = {
     companyName: "Durger King",
@@ -25,7 +26,7 @@ let currentScreen = "main"
 tg.onEvent("backButtonClicked", function() {
     switch (currentScreen) {
         case "main":
-            window.close()
+            tg.close()
             break;
 
         case "market":
@@ -41,6 +42,8 @@ tg.onEvent("backButtonClicked", function() {
 
 mainButtons.children.item(0).addEventListener("click", function() {
     currentScreen = "market"
+
+    tg.expand()
 
     hideMainButtons()
     for (let index = 0; index < companyList.children.length; index++) {
