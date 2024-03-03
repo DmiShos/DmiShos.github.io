@@ -16,14 +16,13 @@ const testCompany3 = {
 };
 const companies = [testCompany1, testCompany2, testCompany3];
 
-const backButton = document.getElementById("back");
 const mainButtons = document.getElementById("mainbuttons");
 const companyList = document.getElementById("companylist");
 hide(companyList);
 
 let currentScreen = "main"
 
-backButton.addEventListener("click", function() {
+tg.onEvent("backButtonClicked", function() {
     switch (currentScreen) {
         case "main":
             window.close()
