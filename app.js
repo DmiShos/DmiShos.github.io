@@ -1,5 +1,7 @@
 const tg = window.Telegram.WebApp;
 
+tg.backButton.isVisible = true;
+
 const testCompany1 = {
     companyName: "Durger King",
     companyDecsription: "Fun Fun Fun!!!",
