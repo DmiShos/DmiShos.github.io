@@ -40,23 +40,6 @@ tg.SettingsButton.show();
 hideCompanyList();
 hidePortfolioList();
 
-for (let index = 0; index < mainButtons.children.length; index++) {
-    const element = mainButtons.children.item(index);
-
-    switch (index) {
-        case 0:
-            element.addEventListener("click", showCompanyList);
-            break;
-
-        case 1:
-            element.addEventListener("click", showPortfolioList);
-            break;
-    
-        default:
-            break;
-    };
-};
-
 tg.onEvent("backButtonClicked", function() {
     switch (currentScreen) {
         case "main":
@@ -79,6 +62,23 @@ tg.onEvent("backButtonClicked", function() {
             break;
     }
 });
+
+for (let index = 0; index < mainButtons.children.length; index++) {
+    const element = mainButtons.children.item(index);
+
+    switch (index) {
+        case 0:
+            element.addEventListener("click", showCompanyList);
+            break;
+
+        case 1:
+            element.addEventListener("click", showPortfolioList);
+            break;
+    
+        default:
+            break;
+    };
+};
 
 function showMainButtons() {
     for (let index = 0; index < mainButtons.children.length; index++) {
