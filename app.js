@@ -1,7 +1,6 @@
 const tg = window.Telegram.WebApp;
 
-tg.BackButton.show();
-tg.SettingsButton.show();
+const context = document.createElement("canvas").getContext("2d");
 
 const testCompany1 = {
     companyName: "Durger King",
@@ -17,11 +16,46 @@ const testCompany3 = {
 };
 const companies = [testCompany1, testCompany2, testCompany3];
 
+const testPortfolioCompany1 = {
+    companyName: "Durger King",
+    shareMax: 100,
+    shareCurrent: 20,
+};
+const testPortfolioCompany2 = {
+    companyName: "Bulochka",
+    shareMax: 1000,
+    shareCurrent: 350,
+};
+const portfolio = [testPortfolioCompany1, testPortfolioCompany2];
+
 const mainButtons = document.getElementById("mainbuttons");
 const companyList = document.getElementById("companylist");
-hide(companyList);
+const portfolioList = document.getElementById("portfoliolist");
 
-let currentScreen = "main"
+let currentScreen = "main";
+
+tg.BackButton.show();
+tg.SettingsButton.show();
+
+hideCompanyList();
+hidePortfolioList();
+
+for (let index = 0; index < mainButtons.children.length; index++) {
+    const element = mainButtons.children.item(index);
+
+    switch (index) {
+        case 0:
+            element.addEventListener("click", showCompanyList);
+            break;
+
+        case 1:
+            element.addEventListener("click", showPortfolioList);
+            break;
+    
+        default:
+            break;
+    };
+};
 
 tg.onEvent("backButtonClicked", function() {
     switch (currentScreen) {
@@ -40,21 +74,6 @@ tg.onEvent("backButtonClicked", function() {
     }
 });
 
-mainButtons.children.item(0).addEventListener("click", function() {
-    currentScreen = "market"
-
-    tg.expand()
-
-    hideMainButtons()
-    for (let index = 0; index < companyList.children.length; index++) {
-        const element = companyList.children.item(index);
-        const currentCompany = companies[index];
-        element.children.item(0).innerHTML = currentCompany.companyName;
-        element.children.item(1).innerHTML = currentCompany.companyDecsription;
-    };
-    show(companyList);
-});
-
 function showMainButtons() {
     for (let index = 0; index < mainButtons.children.length; index++) {
         const element = mainButtons.children.item(index);
@@ -67,6 +86,55 @@ function hideMainButtons() {
         const element = mainButtons.children.item(index);
         hide(element);
     };
+};
+
+function showCompanyList(element) {
+    hideMainMenu(element);
+    for (let index = 0; index < companies.length; index++) {
+        const element = companyList.children.item(index);
+        const currentCompany = companies[index];
+        element.children.item(0).innerHTML = currentCompany.companyName;
+        element.children.item(1).innerHTML = currentCompany.companyDecsription;
+    };
+    show(companyList);
+};
+
+function hideCompanyList() {
+    hide(companyList);
+    for (let index = 0; index < companyList.children.length; index++) {
+        const element = companyList.children.item(index);
+        element.children.item(0).innerHTML = "";
+        element.children.item(1).innerHTML = "";
+    };
+};
+
+function showPortfolioList(element) {
+    hideMainMenu(element);
+    for (let index = 0; index < portfolio.length; index++) {
+        const element = portfolioList.children.item(index);
+        const currentCompany = portfolio[index];
+
+        const firstElement = element.children.item(0)
+
+        firstElement.innerHTML = currentCompany.companyName;
+        element.children.item(1).innerHTML = currentCompany.shareCurrent + "/" + currentCompany.shareMax;
+    };
+    show(portfolioList);
+};
+
+function hidePortfolioList() {
+    hide(portfolioList);
+    for (let index = 0; index < portfolioList.children.length; index++) {
+        const element = portfolioList.children.item(index);
+        element.children.item(0).innerHTML = "";
+        element.children.item(1).innerHTML = "";
+    };
+};
+
+function hideMainMenu(element) {
+    currentScreen = element.id;
+    tg.expand();
+    hideMainButtons();
 };
 
 function hide(element) {

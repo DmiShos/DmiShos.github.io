@@ -1,8 +1,8 @@
 button {
     display: block;
-    background-color: rgb(7, 25, 82);
-    color: rgb(53, 162, 159);
-    border-color: rgb(8, 131, 149);
+    background-color: rgb(141, 123, 104);
+    color: rgb(200, 182, 166);
+    border-color: rgb(164, 144, 124);
     width: 250px;
     border-radius: 20px;
     border-width: 5px;
@@ -13,8 +13,24 @@ button {
 }
 
 button:hover {
-    background-color: rgb(8, 131, 149);
-    color: rgb(242, 247, 161);
-    border-color: rgb(53, 162, 159);
+    background-color: rgb(164, 144, 124);
+    color: rgb(241, 222, 201);
+    border-color: rgb(200, 182, 166);
     transition-duration: 0.3s;
+}
+
+#companylist {
+    font-size: large;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--tg-theme-text-color);
+
+    h1 {
+        font-style: italic;
+    }
+}
+
+.portfoliocompanyname {
+    margin-bottom: -6px;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
 }
