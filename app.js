@@ -33,8 +33,18 @@ const testPortfolioCompany3 = {
     shareMax: 20000,
     shareCurrent: 20000,
 };
+const testPortfolioCompany4 = {
+    companyName: "Test1",
+    shareMax: 20000,
+    shareCurrent: 20000,
+};
+const testPortfolioCompany5 = {
+    companyName: "Test2",
+    shareMax: 20000,
+    shareCurrent: 20000,
+};
 const testCompanies = [testCompany1, testCompany2, testCompany3, testCompany4];
-const testPortfolio = [testPortfolioCompany1, testPortfolioCompany2, testPortfolioCompany3];
+const testPortfolio = [testPortfolioCompany1, testPortfolioCompany2, testPortfolioCompany3, testPortfolioCompany4, testPortfolioCompany5];
 
 const mainButtons = document.getElementById("mainbuttons");
 const pageButtons = document.getElementById("pagebuttons");
@@ -216,6 +226,7 @@ function showCompanyList() {
 
 function hideCompanyList() {
     hide(companyList);
+    hide(pageButtons);
     for (let index = 0; index < companyList.children.length; index++) {
         const element = companyList.children.item(index);
         element.children.item(0).innerHTML = "";
