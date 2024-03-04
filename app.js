@@ -28,8 +28,13 @@ const testPortfolioCompany2 = {
     shareMax: 1000,
     shareCurrent: 350,
 };
+const testPortfolioCompany3 = {
+    companyName: "Geek For Geek",
+    shareMax: 20000,
+    shareCurrent: 20000,
+};
 const testCompanies = [testCompany1, testCompany2, testCompany3, testCompany4];
-const portfolio = [testPortfolioCompany1, testPortfolioCompany2];
+const testPortfolio = [testPortfolioCompany1, testPortfolioCompany2, testPortfolioCompany3];
 
 const mainButtons = document.getElementById("mainbuttons");
 const pageButtons = document.getElementById("pagebuttons");
@@ -37,14 +42,17 @@ const companyList = document.getElementById("companylist");
 const portfolioList = document.getElementById("portfoliolist");
 
 let currentCompanies = []
-let currentScreen = "main";
+let currentPortfolio = []
 let currentCompanyPageInitIndex = 0
+let currentPortfolioPageInitIndex = 0
+let currentScreen = "main"
 
 tg.BackButton.show();
 tg.SettingsButton.show();
 hideCompanyList();
 hidePortfolioList();
-setCurrentCompanyPage(0)
+setCurrentCompanyPage();
+setCurrentPortfolioPage();
 
 tg.onEvent("backButtonClicked", function () {
     switch (currentScreen) {
@@ -87,10 +95,32 @@ for (let index = 0; index < mainButtons.children.length; index++) {
 };
 
 pageButtons.children.item(0).addEventListener("click", function () {
-    changeCompanyPage(-1);
+    switch (currentScreen) {
+        case "market":
+            changeCompanyPage(-1);
+            break;
+
+        case "portfolio":
+            changePortfolioPage(-1);
+            break;
+
+        default:
+            break;
+    };
 });
 pageButtons.children.item(1).addEventListener("click", function () {
-    changeCompanyPage(1);
+    switch (currentScreen) {
+        case "market":
+            changeCompanyPage(1);
+            break;
+
+        case "portfolio":
+            changePortfolioPage(1);
+            break;
+
+        default:
+            break;
+    };
 });
 
 function setCurrentCompanyPage() {
@@ -117,12 +147,44 @@ function changeCompanyPage(delta) {
     const newCurrentCompanyPageInitIndex = delta * companyList.children.length + currentCompanyPageInitIndex
     if (newCurrentCompanyPageInitIndex < 0) {
         currentCompanyPageInitIndex = 0
-    } else if(newCurrentCompanyPageInitIndex < testCompanies.length) {
+    } else if (newCurrentCompanyPageInitIndex < testCompanies.length) {
         currentCompanyPageInitIndex = newCurrentCompanyPageInitIndex
     };
-    setCurrentCompanyPage()
-    hideCompanyList()
-    showCompanyList()
+    setCurrentCompanyPage();
+    hideCompanyList();
+    showCompanyList();
+};
+
+function setCurrentPortfolioPage() {
+    /* Temporary solution */
+
+    const newCurrentPortfolio = []
+    let currentCompanyIndex = currentPortfolioPageInitIndex
+    for (let index = 0; index < portfolioList.children.length; index++) {
+        const currentCompany = testPortfolio[currentCompanyIndex];
+        if (typeof (currentCompany) == "object") {
+            newCurrentPortfolio.push(currentCompany);
+            currentCompanyIndex++
+        } else {
+            break;
+        }
+    };
+
+    if (newCurrentPortfolio.length > 0) {
+        currentPortfolio = newCurrentPortfolio
+    };
+};
+
+function changePortfolioPage(delta) {
+    const newCurrentPortfolioPageInitIndex = delta * portfolioList.children.length + currentPortfolioPageInitIndex
+    if (newCurrentPortfolioPageInitIndex < 0) {
+        currentPortfolioPageInitIndex = 0
+    } else if (newCurrentPortfolioPageInitIndex < testPortfolio.length) {
+        currentPortfolioPageInitIndex = newCurrentPortfolioPageInitIndex
+    };
+    setCurrentPortfolioPage();
+    hidePortfolioList();
+    showPortfolioList();
 };
 
 function showMainButtons() {
@@ -164,12 +226,12 @@ function hideCompanyList() {
 function showPortfolioList() {
     hideMainMenu();
     currentScreen = "portfolio";
-    for (let index = 0; index < portfolio.length; index++) {
+    for (let index = 0; index < currentPortfolio.length; index++) {
         const element = portfolioList.children.item(index);
-        const currentCompany = portfolio[index];
+        const currentCompany = currentPortfolio[index];
 
         const firstElement = element.children.item(0);
-
+        firstElement.style.borderBottomWidth = "2px"
         firstElement.innerHTML = currentCompany.companyName;
         element.children.item(1).innerHTML = currentCompany.shareCurrent + "/" + currentCompany.shareMax;
     };
@@ -182,7 +244,10 @@ function hidePortfolioList() {
     hide(pageButtons);
     for (let index = 0; index < portfolioList.children.length; index++) {
         const element = portfolioList.children.item(index);
-        element.children.item(0).innerHTML = "";
+
+        const firstElement = element.children.item(0);
+        firstElement.style.borderBottomWidth = "0px"
+        firstElement.innerHTML = "";
         element.children.item(1).innerHTML = "";
     };
 };

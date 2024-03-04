@@ -17,6 +17,7 @@ button {
 }
 
 .pagebutton {
+    margin: 30px;
     width: 80px;
     display: inline;
 }
@@ -43,7 +44,7 @@ button:hover {
     border-bottom-color: var(--tg-theme-text-color);
     margin-bottom: -6px;
     border-bottom-style: solid;
-    border-bottom-width: 2px;
+    /*border-bottom-width: 2px;*/
 }
 
 .portfoliocompanyshares {
