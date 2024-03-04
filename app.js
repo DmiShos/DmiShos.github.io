@@ -65,10 +65,16 @@ tg.onEvent("backButtonClicked", function() {
 
         case "market":
             currentScreen = "main"
-            hide(companyList)
+            hideCompanyList()
             showMainButtons()
             break;
     
+        case "portfolio":
+            currentScreen = "main"
+            hidePortfolioList()
+            showMainButtons()
+            break;
+
         default:
             break;
     }
