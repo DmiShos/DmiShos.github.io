@@ -96,6 +96,7 @@ function hideMainButtons() {
 
 function showCompanyList(element) {
     hideMainMenu(element);
+    currentScreen = "market";
     for (let index = 0; index < companies.length; index++) {
         const element = companyList.children.item(index);
         const currentCompany = companies[index];
@@ -116,6 +117,7 @@ function hideCompanyList() {
 
 function showPortfolioList(element) {
     hideMainMenu(element);
+    currentScreen = "portfolio";
     for (let index = 0; index < portfolio.length; index++) {
         const element = portfolioList.children.item(index);
         const currentCompany = portfolio[index];
