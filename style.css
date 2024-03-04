@@ -1,3 +1,7 @@
+body {
+    display: block;
+}
+
 button {
     display: block;
     background-color: rgb(141, 123, 104);
@@ -10,6 +14,11 @@ button {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 60px;
     padding: 15px;
+}
+
+.pagebutton {
+    width: 80px;
+    display: inline;
 }
 
 button:hover {
@@ -30,7 +39,14 @@ button:hover {
 }
 
 .portfoliocompanyname {
+    color: var(--tg-theme-text-color);
+    border-bottom-color: var(--tg-theme-text-color);
     margin-bottom: -6px;
     border-bottom-style: solid;
     border-bottom-width: 2px;
+}
+
+.portfoliocompanyshares {
+    color: var(--tg-theme-text-color);
+    font-size: 20px;
 }
