@@ -50,6 +50,7 @@ const mainButtons = document.getElementById("mainbuttons");
 const pageButtons = document.getElementById("pagebuttons");
 const companyList = document.getElementById("companylist");
 const portfolioList = document.getElementById("portfoliolist");
+const companyCreation = document.getElementById("companycreation");
 
 let currentCompanies = []
 let currentPortfolio = []
@@ -82,6 +83,12 @@ tg.onEvent("backButtonClicked", function () {
             showMainButtons();
             break;
 
+        case "company creation":
+            currentScreen = "main";
+            hideCompanyCreation();
+            showMainButtons();
+            break;
+
         default:
             break;
     }
@@ -97,6 +104,10 @@ for (let index = 0; index < mainButtons.children.length; index++) {
 
         case 1:
             element.addEventListener("click", showPortfolioList);
+            break;
+
+        case 2:
+            element.addEventListener("click", showCompanyCreation);
             break;
 
         default:
@@ -236,7 +247,7 @@ function hideCompanyList() {
 
 function showPortfolioList() {
     hideMainMenu();
-    currentScreen = "portfolio";
+    currentScreen = "portfolio"
     for (let index = 0; index < currentPortfolio.length; index++) {
         const element = portfolioList.children.item(index);
         const currentCompany = currentPortfolio[index];
@@ -261,6 +272,16 @@ function hidePortfolioList() {
         firstElement.innerHTML = "";
         element.children.item(1).innerHTML = "";
     };
+};
+
+function showCompanyCreation() {
+    hideMainButtons();
+    currentScreen = "company creation"
+    show(companyCreation)
+};
+
+function hideCompanyCreation() {
+    hide(companyCreation)
 };
 
 function hideMainMenu() {
