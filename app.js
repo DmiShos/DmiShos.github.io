@@ -48,9 +48,13 @@ const testPortfolio = [testPortfolioCompany1, testPortfolioCompany2, testPortfol
 
 const mainButtons = document.getElementById("mainbuttons");
 const pageButtons = document.getElementById("pagebuttons");
+
 const companyList = document.getElementById("companylist");
 const portfolioList = document.getElementById("portfoliolist");
 const companyCreation = document.getElementById("companycreation");
+
+const notes = document.getElementsByClassName("note");
+const noteOverlay = document.getElementById("noteoverlay");
 
 let currentCompanies = []
 let currentPortfolio = []
@@ -113,6 +117,19 @@ for (let index = 0; index < mainButtons.children.length; index++) {
         default:
             break;
     };
+};
+
+addEventListener("click", (event) => {
+    hideNoteOverlay()
+});
+
+for (let index = 0; index < notes.length; index++) {
+    const note = notes[index];
+    note.addEventListener("click", function () {
+        setTimeout(function() {
+            showNoteOverlay(note.getElementsByClassName("notetext").item(0).innerHTML)
+        }, 100);
+    });
 };
 
 pageButtons.children.item(0).addEventListener("click", function () {
@@ -220,6 +237,16 @@ function hideMainButtons() {
         const element = mainButtons.children.item(index);
         hide(element);
     };
+};
+
+function showNoteOverlay(text) {
+    noteOverlay.style.display = "block"
+    noteOverlay.children.item(0).innerHTML = text
+};
+
+function hideNoteOverlay(text) {
+    noteOverlay.style.display = "none"
+    noteOverlay.children.item(0).innerHTML = ""
 };
 
 function showCompanyList() {

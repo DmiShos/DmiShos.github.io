@@ -59,7 +59,7 @@ button:hover {
 
     p {
         display: inline;
-        font-size: 20px;
+        font-size: 25px;
     }
 
     input {
@@ -96,6 +96,7 @@ button:hover {
         margin-bottom: 10px;
         padding: 50px;
         text-align: center;
+        cursor: pointer;
     }
 
     label:hover {
@@ -112,6 +113,25 @@ button:hover {
     }
 }
 
+#noteoverlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 75%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2;
+
+    p {
+        font-size: large;
+        color: rgb(242, 239, 229);
+        margin-left: 1%;
+    }
+}
+
 .note {
     display: inline;
 
@@ -120,32 +140,25 @@ button:hover {
         color: var(--tg-theme-text-color);
         border-color: var(--tg-theme-text-color);
         border-style: dotted;
-        border-width: 1px;
+        border-width: 2.5px;
         border-radius: 90px;
-        padding: 3px;
+        padding: 4px;
+        padding-left: 7px;
+        padding-right: 7px;
+        margin-left: 7px;
+        cursor: pointer;
     }
-
+    
     .sign:hover {
         background-color: rgb(199, 200, 204);
         color: rgb(242, 239, 229);
         border-color: rgb(180, 180, 184);
         border-style: solid;
-    }
-
-    .sign:hover+.notetext {
-        color: var(--tg-theme-text-color);
-        font-size: 14px !important;
-        border-width: 1px;
-        border-color: var(--tg-theme-text-color);
-        border-style: solid;
-        padding: 5px;
+        transition-duration: 0.2s;
     }
 
     .notetext {
-        color: var(--tg-theme-bg-color);
-        ;
-        font-size: 0px !important;
-        border: none;
+        display: none !important;
     }
 }
 
