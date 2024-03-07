@@ -6,7 +6,190 @@
 
     <title>Page Title</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            color: var(--tg-theme-text-color);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        button {
+            display: block;
+            background-color: rgb(180, 180, 184);
+            color: rgb(227, 225, 217);
+            border-color: rgb(199, 200, 204);
+            width: 250px;
+            border-radius: 20px;
+            border-width: 5px;
+            font-size: 20px;
+            margin: 60px;
+            padding: 15px;
+        }
+
+        .pagebutton {
+            margin: 30px;
+            width: 80px;
+            display: inline;
+        }
+
+        button:hover {
+            background-color: rgb(199, 200, 204);
+            color: rgb(242, 239, 229);
+            border-color: rgb(227, 225, 217);
+            transition-duration: 0.2s;
+        }
+
+        #companylist {
+            font-size: large;
+
+            h1 {
+                font-style: italic;
+            }
+        }
+
+        .portfoliocompanyname {
+            border-bottom-color: var(--tg-theme-text-color);
+            margin-bottom: -6px;
+            border-bottom-style: solid;
+        }
+
+        .portfoliocompanyshares {
+            font-size: 20px;
+        }
+
+        #companycreation {
+            /*display: none;*/
+            margin-left: 5px;
+
+            h1 {
+                font-size: 30px;
+                margin-bottom: 60px;
+                text-align: center;
+            }
+
+            p {
+                display: inline;
+                font-size: 25px;
+            }
+
+            input {
+                display: block;
+                background-color: var(--tg-theme-bg-color);
+                color: var(--tg-theme-text-color);
+                margin-top: 40px;
+                margin-bottom: 40px;
+
+            }
+
+            input[type=file] {
+                display: none;
+                border: none;
+            }
+
+            textarea {
+                display: block;
+                background-color: var(--tg-theme-bg-color);
+                color: var(--tg-theme-text-color);
+                margin-top: 40px;
+                margin-bottom: 40px;
+            }
+
+            label {
+                display: block;
+                width: 200px;
+                font-size: large;
+                border-width: 1px;
+                border-style: dotted;
+                border-color: var(--tg-theme-text-color);
+                border-radius: 6px;
+                margin-top: 40px;
+                margin-bottom: 10px;
+                padding: 50px;
+                text-align: center;
+                cursor: pointer;
+            }
+
+            label:hover {
+                background-color: rgb(199, 200, 204);
+                border-width: 1.5px;
+                border-style: solid;
+                transition-duration: 0.2s;
+            }
+
+            img {
+                display: block;
+                font-size: large;
+                margin-bottom: 60px;
+            }
+        }
+
+        #noteoverlay {
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 75%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2;
+
+            p {
+                font-size: large;
+                color: rgb(242, 239, 229);
+                margin-left: 1%;
+            }
+        }
+
+        .note {
+            display: inline;
+
+            .sign {
+                background-color: var(--tg-theme-bg-color);
+                color: var(--tg-theme-text-color);
+                border-color: var(--tg-theme-text-color);
+                border-style: dotted;
+                border-width: 2.5px;
+                border-radius: 90px;
+                padding: 4px;
+                padding-left: 7px;
+                padding-right: 7px;
+                margin-left: 7px;
+                cursor: pointer;
+            }
+
+            .sign:hover {
+                background-color: rgb(199, 200, 204);
+                color: rgb(242, 239, 229);
+                border-color: rgb(180, 180, 184);
+                border-style: solid;
+                transition-duration: 0.2s;
+            }
+
+            .notetext {
+                display: none !important;
+            }
+        }
+
+        textarea {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            resize: none;
+            font-size: 18px;
+        }
+
+        input {
+            border: none;
+            border-bottom: 1px dotted;
+            font-size: 18px;
+            outline: none;
+        }
+
+        input:focus {
+            border: none;
+            border-bottom: 2px solid;
+            font-size: 18px;
+        }
+    </style>
 
 </head>
 
@@ -61,7 +244,7 @@
             Tap here to select image
             <input type="file" id="imageselector" class="button" accept="image/png">
         </label>
-        <img src="companyicon.png" alt="Here will be company icon"> 
+        <img src="companyicon.png" alt="Here will be company icon">
         <p>2. Add the company name</p>
         <input type="text" maxlength="20">
         <p>3. Add the company description</p>

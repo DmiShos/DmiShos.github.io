@@ -69,6 +69,10 @@ hidePortfolioList();
 setCurrentCompanyPage();
 setCurrentPortfolioPage();
 
+addEventListener("click", (event) => {
+    hideNoteOverlay()
+});
+
 tg.onEvent("backButtonClicked", function () {
     switch (currentScreen) {
         case "main":
@@ -118,10 +122,6 @@ for (let index = 0; index < mainButtons.children.length; index++) {
             break;
     };
 };
-
-addEventListener("click", (event) => {
-    hideNoteOverlay()
-});
 
 for (let index = 0; index < notes.length; index++) {
     const note = notes[index];
