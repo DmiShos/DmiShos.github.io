@@ -51,7 +51,10 @@ const pageButtons = document.getElementById("pagebuttons");
 
 const companyList = document.getElementById("companylist");
 const portfolioList = document.getElementById("portfoliolist");
+
 const companyCreation = document.getElementById("companycreation");
+const sendRequestButton = companyCreation.querySelector("button");
+const imageSelector = document.getElementById("imageselector");
 
 const notes = document.getElementsByClassName("note");
 const noteOverlay = document.getElementById("noteoverlay");
@@ -126,7 +129,7 @@ for (let index = 0; index < mainButtons.children.length; index++) {
 for (let index = 0; index < notes.length; index++) {
     const note = notes[index];
     note.addEventListener("click", function () {
-        setTimeout(function() {
+        setTimeout(function () {
             showNoteOverlay(note.getElementsByClassName("notetext").item(0).innerHTML)
         }, 100);
     });
@@ -146,6 +149,7 @@ pageButtons.children.item(0).addEventListener("click", function () {
             break;
     };
 });
+
 pageButtons.children.item(1).addEventListener("click", function () {
     switch (currentScreen) {
         case "market":
@@ -159,6 +163,26 @@ pageButtons.children.item(1).addEventListener("click", function () {
         default:
             break;
     };
+});
+
+imageSelector.addEventListener("change", () => {
+    const file = imageSelector.files[0]
+    var parts = file.name.split('.');
+    const ext = parts[parts.length - 1];
+    if(ext.toLowerCase() != "png") {
+        alert("File is not png")
+        return
+    }
+    console.log(file)
+    const fileReader = new FileReader();
+    fileReader.addEventListener("load", function() {
+        companyCreation.querySelector("img").src = fileReader.result 
+    });
+    fileReader.readAsDataURL(file);
+});
+
+sendRequestButton.addEventListener("click", () => {
+    tg.sendData("Hi!");
 });
 
 function setCurrentCompanyPage() {

@@ -110,6 +110,7 @@ button:hover {
         display: block;
         font-size: large;
         margin-bottom: 60px;
+        width: 50%;
     }
 }
 
