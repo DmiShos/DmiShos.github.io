@@ -131,7 +131,7 @@ for (let index = 0; index < notes.length; index++) {
     note.addEventListener("click", function () {
         setTimeout(function () {
             showNoteOverlay(note.getElementsByClassName("notetext").item(0).innerHTML)
-        }, 100);
+        }, 0.01);
     });
 };
 
@@ -169,20 +169,102 @@ imageSelector.addEventListener("change", () => {
     const file = imageSelector.files[0]
     var parts = file.name.split('.');
     const ext = parts[parts.length - 1];
-    if(ext.toLowerCase() != "png") {
+    if (ext.toLowerCase() != "png") {
         alert("File is not png")
         return
     }
     console.log(file)
     const fileReader = new FileReader();
-    fileReader.addEventListener("load", function() {
-        companyCreation.querySelector("img").src = fileReader.result 
+    fileReader.addEventListener("load", function () {
+        companyCreation.querySelector("img").src = fileReader.result
     });
     fileReader.readAsDataURL(file);
 });
 
 sendRequestButton.addEventListener("click", () => {
-    tg.sendData("Hi!");
+    const regex = /^[a-zA-Z]+$/
+
+    const comapnyName = document.getElementById("name").value;
+    const comapnyDescription = document.getElementById("description").value;
+    const productName = document.getElementById("productname").value;
+    const productCost = document.getElementById("productcost").value;
+    const maxShares = document.getElementById("maxshares").value;
+
+    if (comapnyName.length > 20) {
+        alert("Name should be not longer than 20 symbols");
+        return;
+    };
+    if (comapnyName.length == 0) {
+        alert("Name should be longer than 0 symbols");
+        return;
+    };
+    if (regex.test(comapnyName) == false) {
+        alert("Name should contain only english characters");
+        return;
+    };
+    if (comapnyDescription.length > 100) {
+        alert("Description should be not longer than 100 symbols");
+        return;
+    };
+    if (comapnyDescription.length = 0) {
+        alert("Description should be longer than 0 symbols");
+        return;
+    };
+    if (regex.test(comapnyDescription) == false) {
+        alert("Description should contain only english characters");
+        return;
+    };
+    if (productName.length > 100) {
+        alert("Product name should be not longer than 100 symbols");
+        return;
+    };
+    if (productName.length == 0) {
+        alert("Product name should be longer than 0 symbols");
+        return;
+    };
+    if (regex.test(productName) == false) {
+        alert("Product name should contain only english characters");
+        return;
+    };
+    if (productCost.length > 7) {
+        alert("Product cost should be not longer than 7 symbols");
+        return;
+    };
+    if (productCost == 0) {
+        alert("Product cost should be more than 0");
+        return;
+    };
+    for (let i = 0; i < productCost.length; i++) {
+        var ascii = productCost.charCodeAt(i);
+        if (ascii < 48 || ascii > 57) {
+            alert("Product cost should contain only digits");
+            return;
+        };
+    };
+    if (maxShares.length > 7) {
+        alert("Max number of shares should be not longer than 7 symbols");
+        return;
+    };
+    if (maxShares == 0) {
+        alert("Max number of shares should be more than 0");
+        return;
+    };
+    for (let i = 0; i < maxShares.length; i++) {
+        var ascii = maxShares.charCodeAt(i);
+        if (ascii < 48 || ascii > 57) {
+            alert("Max number of shares should contain only digits");
+            return;
+        };
+    };
+
+    const request = {
+        comapnyName: comapnyName,
+        comapnyDescription: comapnyDescription,
+        productName: productName,
+        productCost: parseInt(productCost),
+        maxShares: parseInt(maxShares),
+    };
+    tg.sendData(JSON.stringify(request));
 });
 
 function setCurrentCompanyPage() {

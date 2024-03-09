@@ -63,13 +63,35 @@
         </label>
         <img src="companyicon.png" alt="Here will be company icon"> 
         <p>2. Add the company name</p>
-        <input type="text" maxlength="20">
+        <div class="note">
+            <p class="sign">?</p>
+            <p class="notetext">Here you can set company name which will display as title in the market. Name should contain only english characters and should be not longer than 20 symbols and not shorter than 0 symbols.</p>
+        </div>
+        <input type="text" id="name" maxlength="20">
         <p>3. Add the company description</p>
-        <textarea cols="30" rows="6"></textarea>
-        <p>4. What is NFT name?</p>
-        <input type="text">
-        <p>5. How many shares will be for this company?</p>
-        <input type="number">
+        <div class="note">
+            <p class="sign">?</p>
+            <p class="notetext">Here you can set company description which will display under company name in the company page. Description should contain only english characters and should be not longer than 100 symbols and not shorter than 0 symbols.</p>
+        </div>
+        <textarea id="description" cols="30" rows="6", maxlength="100"></textarea>
+        <p>4. Add the product name</p>
+        <div class="note">
+            <p class="sign">?</p>
+            <p class="notetext">Here you can set product name. It is determine a product which you want buy. Product name should contain only english characters and should be not longer than 100 symbols and not shorter than 0 symbols.<br>WARNING: Now available only NFT!</p>
+        </div>
+        <input type="text" id="productname" maxlength="100">
+        <p>5. Add the cost of product</p>
+        <div class="note">
+            <p class="sign">?</p>
+            <p class="notetext">Here you can set product cost which need to buy product. Cost should contain only digits and should be not longer than 7 symbols and more than 0.</p>
+        </div>
+        <input type="number" id="productcost" maxlength="7">
+        <p>6. Add max number of shares</p>
+        <div class="note">
+            <p class="sign">?</p>
+            <p class="notetext">Here you can set max number of shares. Number should contain only digits and should be not longer than 7 symbols and more than 0.</p>
+        </div>
+        <input type="number" id="maxshares" maxlength="7">
         <button type="button">Send Request</button>
     </div>
 

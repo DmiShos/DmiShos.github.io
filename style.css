@@ -48,7 +48,7 @@ button:hover {
 }
 
 #companycreation {
-    /*display: none;*/
+    display: none;
     margin-left: 5px;
 
     h1 {
